@@ -101,7 +101,7 @@
         android:layout_marginStart="@dimen/common_spacing"
         app:layout_constraintStart_toEndOf="@id/like_value"
         app:layout_constraintTop_toTopOf="@id/barrier_bottom_content"
-        app:srcCompat="@drawable/ic__share_24"/>
+        app:srcCompat="@drawable/ic_share_24"/>
 
     <TextView
         android:id="@+id/share_value"
@@ -119,7 +119,7 @@
         android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintEnd_toStartOf="@id/view_value"
         app:layout_constraintTop_toTopOf="@id/barrier_bottom_content"
-        app:srcCompat="@drawable/ic__remove_red_eye_24"/>
+        app:srcCompat="@drawable/ic_remove_red_eye_24"/>
 
     <TextView
         android:id="@+id/view_value"
