@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                 return value.div(1000000).toString() + "M"
             } else if (value > 999) {
                 return if (value < 10000) {
-                    String.format("%.f", value.toDouble().div(1000))
+                    String.format("%.1f", value.toDouble().div(1000))
                 } else {
                     value.div(1000).toString() + "K"
                 }
