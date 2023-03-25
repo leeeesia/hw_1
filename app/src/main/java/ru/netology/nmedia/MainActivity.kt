@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
@@ -21,25 +22,15 @@ class MainActivity : AppCompatActivity() {
             likedByMe = false
         )
 
-        fun value(value: Int): String {
-            if (value > 999999) {
-                return value.div(1000000).toString() + "M"
-            } else if (value > 999) {
-                return if (value < 10000) {
-                    String.format("%.1f", value.toDouble().div(1000))
-                } else {
-                    value.div(1000).toString() + "K"
-                }
-            } else return value.toString()
-        }
 
         with(binding) {
             author.text = post.author
             published.text = post.published
             content.text = post.content
+            viewValue.text = Format.value(post.views)
 
-            likeValue?.text = value(post.likes)
-            shareValue?.text = value(post.share)
+            likeValue?.text = Format.value(post.likes)
+            shareValue?.text = Format.value(post.share)
 
             if (post.likedByMe) {
                 likeIcon.setImageResource(R.drawable.ic_favorite_24)
@@ -48,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             likeIcon.setOnClickListener {
                 post.likedByMe = !post.likedByMe
                 if (post.likedByMe) post.likes++ else post.likes--
-
+                Log.d("stuff", "like")
 
                 likeIcon.setImageResource(
                     if (post.likedByMe) {
@@ -57,14 +48,20 @@ class MainActivity : AppCompatActivity() {
                         R.drawable.ic_favorite_border_24
                     }
                 )
-                likeValue?.text = value(post.likes)
+                likeValue?.text = Format.value(post.likes)
             }
 
             shareIcon.setOnClickListener {
                 post.share++
-                shareValue?.text = value(post.share)
+                shareValue?.text = Format.value(post.share)
+            }
+            root.setOnClickListener {
+                Log.d("stuff", "stuff")
             }
 
+            avatar.setOnClickListener {
+                Log.d("stuff", "avatar")
+            }
         }
 
 
