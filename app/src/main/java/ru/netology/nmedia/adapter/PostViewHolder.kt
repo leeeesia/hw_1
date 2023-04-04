@@ -1,7 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import ru.netology.nmedia.Format
+import ru.netology.nmedia.utils.Format
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
