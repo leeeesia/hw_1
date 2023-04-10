@@ -53,8 +53,7 @@
         app:layout_constraintBottom_toTopOf="@+id/content"
         app:layout_constraintStart_toEndOf="@id/ic_edit"
         app:layout_constraintEnd_toStartOf="@id/edit_close"
-        tools:layout_editor_absoluteX="16dp"
-        tools:text="@sample/posts.json/data/author" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/ic_edit"

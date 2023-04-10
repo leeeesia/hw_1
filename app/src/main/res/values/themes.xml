@@ -13,4 +13,17 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="LikeStyle" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="iconTint">@color/like_button_tint</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="MenuStyle" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/icon</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

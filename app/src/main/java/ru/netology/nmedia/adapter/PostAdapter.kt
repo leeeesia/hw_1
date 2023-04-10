@@ -42,20 +42,15 @@ class PostViewHolder(
             published.text = post.published
             content.text = post.content
             viewValue.text = Format.value(post.views)
-            likeValue.text = Format.value(post.likes)
-            shareValue.text = Format.value(post.share)
+            like.text = Format.value(post.likes)
+            share.text = Format.value(post.share)
+            like.isChecked = post.likedByMe
 
-            if (post.likedByMe) {
-                likeIcon.setImageResource(R.drawable.ic_favorite_24)
-            } else {
-                likeIcon.setImageResource(R.drawable.ic_favorite_border_24)
-            }
-
-            likeIcon.setOnClickListener {
+            like.setOnClickListener {
                 listener.onLike(post)
             }
 
-            shareIcon.setOnClickListener {
+            share.setOnClickListener {
                 listener.onShare(post)
             }
 
