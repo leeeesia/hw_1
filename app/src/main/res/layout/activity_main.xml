@@ -10,91 +10,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:clipToPadding="false"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/barrier_edit"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context=".ui.MainActivity"
         tools:listitem="@layout/card_post" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/edit_group"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="edit_message,edit_author,ic_edit,edit_close"
-         />
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="edit_close,edit_message,ic_edit" />
-
-    <TextView
-        android:id="@+id/edit_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Edit message"
-        android:paddingTop="@dimen/common_spacing"
-        app:layout_constraintStart_toEndOf="@id/ic_edit"
-        app:layout_constraintEnd_toStartOf="@id/edit_close"
-        android:textColor="@color/blue"
-        app:layout_constraintBottom_toTopOf="@id/edit_author" />
-
-    <TextView
-        android:id="@+id/edit_author"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="Author"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintStart_toEndOf="@id/ic_edit"
-        app:layout_constraintEnd_toStartOf="@id/edit_close"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <ImageView
-        android:id="@+id/ic_edit"
-        android:layout_width="wrap_content"
-        android:paddingEnd="@dimen/common_spacing"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/edit_author"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edit_message"
-        app:srcCompat="@drawable/ic_edit_24" />
-
-    <ImageView
-        android:id="@+id/edit_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/edit_author"
-        app:layout_constraintTop_toTopOf="@+id/edit_message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_close_24" />
-
-    <EditText
-        android:id="@+id/content"
-        android:inputType="textMultiLine"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/content_hint"
-        android:importantForAutofill="no"
-        android:padding="@dimen/common_spacing"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/save" />
-
-    <ImageView
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_done_24" />
-
+        app:srcCompat="@drawable/ic_add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

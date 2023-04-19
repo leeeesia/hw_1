@@ -5,4 +5,6 @@
     <string name="content_hint">enter the text of the post</string>
     <string name="empty_post_error">Content must not be empty</string>
     <string name="edit">Edit</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="error_empty_content">empty content</string>
 </resources>

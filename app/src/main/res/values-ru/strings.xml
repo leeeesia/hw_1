@@ -6,4 +6,6 @@
     <string name="content_hint">введите текст поста</string>
     <string name="empty_post_error">Пост не может быть пустым</string>
     <string name="edit">Редактировать</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="error_empty_content">empty content</string>
 </resources>

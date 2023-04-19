@@ -1,8 +1,10 @@
 package ru.netology.nmedia.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
+import kotlin.math.log
 
 class PostRepositoryInMemory : PostRepository {
     private var nextId = 0L
@@ -13,14 +15,16 @@ class PostRepositoryInMemory : PostRepository {
             content = "Привет, это Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
             likes = 159,
-            likedByMe = false
+            likedByMe = false,
+            videoLink = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         ), Post(
             id = ++nextId,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это Третий пост! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
             likes = 1399,
-            likedByMe = false
+            likedByMe = false,
+            videoLink = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         ), Post(
             id = ++nextId,
             author = "Университет интернет-профессий будущего",
@@ -34,7 +38,8 @@ class PostRepositoryInMemory : PostRepository {
             content = "Привет, это Первый пост! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
             likes = 152529,
-            likedByMe = false
+            likedByMe = false,
+            videoLink = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         )
 
 
@@ -95,4 +100,7 @@ class PostRepositoryInMemory : PostRepository {
         }
         data.value = posts
     }
+
+
+
 }

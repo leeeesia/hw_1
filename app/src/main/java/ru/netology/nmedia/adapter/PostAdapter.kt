@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -11,11 +12,12 @@ import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Format
 
-interface PostListener{
+interface PostListener {
     fun onRemove(post: Post)
     fun onEdit(post: Post)
     fun onLike(post: Post)
     fun onShare(post: Post)
+    fun onPlay(post: Post)
 }
 
 class PostAdapter(
@@ -35,16 +37,24 @@ class PostAdapter(
 class PostViewHolder(
     private val binding: CardPostBinding,
     private val listener: PostListener
-): RecyclerView.ViewHolder(binding.root) {
-    fun bind(post: Post){
+) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(post: Post) {
         with(binding) {
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            viewValue.text = Format.value(post.views)
+            view.text = Format.value(post.views)
             like.text = Format.value(post.likes)
             share.text = Format.value(post.share)
             like.isChecked = post.likedByMe
+
+            if (post.videoLink != null) {
+                video.visibility = View.VISIBLE
+                play.visibility = View.VISIBLE
+            } else {
+                video.visibility = View.GONE
+                play.visibility = View.GONE
+            }
 
             like.setOnClickListener {
                 listener.onLike(post)
@@ -53,18 +63,23 @@ class PostViewHolder(
             share.setOnClickListener {
                 listener.onShare(post)
             }
-
+            play.setOnClickListener {
+                listener.onPlay(post)
+            }
+            video.setOnClickListener {
+                listener.onPlay(post)
+            }
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.post_options)
                     setOnMenuItemClickListener { item ->
-                        when(item.itemId){
-                            R.id.remove ->{
+                        when (item.itemId) {
+                            R.id.remove -> {
                                 listener.onRemove(post)
                                 true
                             }
-                            R.id.edit ->{
+                            R.id.edit -> {
                                 listener.onEdit(post)
                                 true
                             }
@@ -79,7 +94,7 @@ class PostViewHolder(
 }
 
 
-class PostDiffCallback : DiffUtil.ItemCallback<Post>(){
+class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean =
         oldItem.id == newItem.id
 

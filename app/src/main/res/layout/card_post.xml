@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toBottomOf="@id/barrier_bottom_author"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@sample/posts.json/data/authorAvatar" />
+        tools:src="@sample/posts.json/data/authorAvatar"
+        android:src="@drawable/ic_launcher_foreground"/>
 
     <TextView
         android:id="@+id/author"
@@ -48,8 +49,7 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/MenuStyle"
-
+        style="@style/ButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:icon="@drawable/ic_more_vert_24" />
@@ -91,31 +91,39 @@
         app:icon="@drawable/ic_share_24" />
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/view_icon"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/view"
+        style="@style/LikeStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintEnd_toStartOf="@id/view_value"
-        app:layout_constraintTop_toTopOf="@id/barrier_bottom_content"
-        app:srcCompat="@drawable/ic_remove_red_eye_24" />
-
-    <TextView
-        android:id="@+id/view_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@+id/view_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrier_bottom_content"
-        tools:text="@sample/posts.json/data/view" />
+        app:icon="@drawable/ic_remove_red_eye_24" />
+
+    <ImageView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        android:src="@drawable/ic_launcher_foreground"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/play"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_play_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/video"
+        app:layout_constraintEnd_toEndOf="@id/video"
+        app:layout_constraintStart_toStartOf="@+id/video"
+        app:layout_constraintTop_toTopOf="@id/video" />
+
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_bottom_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content" />
+        app:constraint_referenced_ids="video" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,12 +30,12 @@ class PostViewModel : ViewModel() {
         edited.value?.let {
             repository.save(it)
         }
-        edited.value = empty
+        reset()
     }
-
-    fun edit(post: Post){
+    fun edit(post: Post) {
         edited.value = post
     }
+
 
     fun reset() {
         edited.value = empty
