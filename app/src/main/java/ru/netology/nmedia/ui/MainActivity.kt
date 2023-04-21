@@ -1,5 +1,6 @@
 package ru.netology.nmedia.ui
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.adapter.PostListener
@@ -15,6 +17,7 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.AndroidUtils
 import ru.netology.nmedia.viewmodel.PostViewModel
+import java.util.prefs.Preferences
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +27,10 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
 
         val newPostContract = registerForActivityResult(NewPostActivity.Contract) { result ->
-            result?: return@registerForActivityResult
+            result ?: return@registerForActivityResult
             viewModel.changeContent(result)
             viewModel.save()
         }
-
 
         val adapter = PostAdapter(
             object : PostListener {
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        activityMainBinding.add.setOnClickListener{
+        activityMainBinding.add.setOnClickListener {
             newPostContract.launch("")
         }
 
