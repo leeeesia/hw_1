@@ -20,11 +20,11 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 import java.util.prefs.Preferences
 
 class MainActivity : AppCompatActivity() {
+    val viewModel: PostViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-        val viewModel: PostViewModel by viewModels()
 
         val newPostContract = registerForActivityResult(NewPostActivity.Contract) { result ->
             result ?: return@registerForActivityResult
@@ -75,5 +75,9 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
         activityMainBinding.list.adapter = adapter
+    }
+    override fun onResume() {
+        viewModel.reset()
+        super.onResume()
     }
 }
