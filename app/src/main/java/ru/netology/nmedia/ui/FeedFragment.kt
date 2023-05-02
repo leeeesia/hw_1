@@ -1,36 +1,25 @@
 package ru.netology.nmedia.ui
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.adapter.PostListener
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.utils.AndroidUtils
 import ru.netology.nmedia.viewmodel.PostViewModel
-import java.util.prefs.Preferences
 
-class MainActivity : AppCompatActivity() {
-    val viewModel: PostViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(activityMainBinding.root)
-
-        val newPostContract = registerForActivityResult(NewPostActivity.Contract) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
-        }
+class FeedFragment : Fragment() {
+    val viewModel: PostViewModel by activityViewModels ()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val activityMainBinding = FragmentFeedBinding.inflate(layoutInflater)
 
         val adapter = PostAdapter(
             object : PostListener {
@@ -40,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onEdit(post: Post) {
                     viewModel.edit(post)
+                    findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
                     newPostContract.launch(post.content.toString())
                 }
 
@@ -67,15 +57,18 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
+
         activityMainBinding.add.setOnClickListener {
-            newPostContract.launch("")
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
         activityMainBinding.list.adapter = adapter
+        return activityMainBinding.root
     }
+
     override fun onResume() {
         viewModel.reset()
         super.onResume()
