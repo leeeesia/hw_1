@@ -3,12 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/newPostFragment">
+    app:startDestination="@id/feedFragment">
 
-    <fragment
-        android:id="@+id/newPostFragment"
-        android:name="ru.netology.nmedia.ui.NewPostFragment"
-        android:label="NewPostFragment" />
     <fragment
         android:id="@+id/feedFragment"
         android:name="ru.netology.nmedia.ui.FeedFragment"
@@ -16,9 +12,21 @@
         tools:layout="@layout/fragment_feed" >
         <action
             android:id="@+id/action_feedFragment_to_newPostFragment"
-            app:destination="@id/newPostFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in" />
+            app:destination="@id/newPostFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPostFragment"
+        android:name="ru.netology.nmedia.ui.NewPostFragment"
+        android:label="NewPostFragment" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="ru.netology.nmedia.ui.PostFragment"
+        android:label="PostFragment" >
+        <action
+            android:id="@+id/action_postFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
     </fragment>
 </navigation>

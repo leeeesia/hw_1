@@ -12,16 +12,10 @@ import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Format
 
-interface PostListener {
-    fun onRemove(post: Post)
-    fun onEdit(post: Post)
-    fun onLike(post: Post)
-    fun onShare(post: Post)
-    fun onPlay(post: Post)
-}
+
 
 class PostAdapter(
-    private val listener: PostListener
+    private val listener: OnInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -32,11 +26,12 @@ class PostAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
 }
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val listener: PostListener
+    private val listener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         with(binding) {
@@ -68,6 +63,10 @@ class PostViewHolder(
             }
             video.setOnClickListener {
                 listener.onPlay(post)
+            }
+
+            root.setOnClickListener {
+                listener.onPostClick(post)
             }
 
             menu.setOnClickListener {

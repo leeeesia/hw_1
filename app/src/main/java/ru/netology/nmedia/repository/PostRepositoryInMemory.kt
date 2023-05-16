@@ -82,6 +82,10 @@ class PostRepositoryInMemory(
         data.value = posts
     }
 
+    override fun viewPostById(id: Long) {
+        data.value = posts
+    }
+
     override fun save(post: Post) {
         if (post.id == 0L) {
             posts = listOf(
