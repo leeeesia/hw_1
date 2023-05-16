@@ -9,6 +9,10 @@ class PostRepositorySQLiteImpl(
     private val dao: PostDao
 ) : PostRepository {
     private var posts = emptyList<Post>()
+        set(value) {
+            field = value
+            data.value = value
+        }
     private val data = MutableLiveData(posts)
 
     init {
@@ -28,7 +32,6 @@ class PostRepositorySQLiteImpl(
                 if (it.id != id) it else saved
             }
         }
-        data.value = posts
     }
 
 
@@ -40,7 +43,6 @@ class PostRepositorySQLiteImpl(
                 likes = if (it.likedByMe) it.likes - 1 else it.likes + 1
             )
         }
-        data.value = posts
     }
 
     override fun shareById(id: Long) {
@@ -53,19 +55,16 @@ class PostRepositorySQLiteImpl(
                 post
             }
         }
-        data.value = posts
     }
 
     override fun removeById(id: Long) {
         dao.removeById(id)
         posts = posts.filter { it.id != id }
-        data.value = posts
     }
 
     override fun viewPostById(id: Long) {
         posts = posts.map {
             if (it.id != id) it else it.copy(views = it.views + 1)
         }
-        data.value = posts
     }
 }
