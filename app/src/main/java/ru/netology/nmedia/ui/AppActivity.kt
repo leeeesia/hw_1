@@ -1,6 +1,8 @@
 package ru.netology.nmedia.ui
 
+import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
@@ -16,6 +18,10 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         val binding = ActivityAppBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState, persistentState)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            requestPermissions(arrayOf(POST_NOTIFICATIONS), 100500)
+        }
+
         setContentView(binding.root)
 
         intent?.let {
@@ -24,9 +30,11 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             }
             val text = it.getStringExtra(Intent.EXTRA_TEXT)
             if (text.isNullOrBlank()) {
-                Snackbar.make(binding.root,
+                Snackbar.make(
+                    binding.root,
                     R.string.error_empty_content,
-                    Snackbar.LENGTH_INDEFINITE)
+                    Snackbar.LENGTH_INDEFINITE
+                )
                     .setAction(android.R.string.ok) {
                         finish()
                     }
